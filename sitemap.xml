@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://YOUR-DOMAIN/</loc>
+    <loc>https://rarekid.store/</loc>
     <lastmod>2026-10-01</lastmod>
     <priority>1.0</priority>
-    <image:image><image:loc>https://YOUR-DOMAIN/images/drop01-sticker-1.jpg</image:loc></image:image>
-    <image:image><image:loc>https://YOUR-DOMAIN/images/drop01-sticker-2.jpg</image:loc></image:image>
-    <image:image><image:loc>https://YOUR-DOMAIN/images/drop01-sticker-3.jpg</image:loc></image:image>
-    <image:image><image:loc>https://YOUR-DOMAIN/images/drop01-sticker-4.jpg</image:loc></image:image>
-    <image:image><image:loc>https://YOUR-DOMAIN/images/drop01-sticker-5.jpg</image:loc></image:image>
+    <image:image><image:loc>https://rarekid.store/images/drop01-sticker-1.jpg</image:loc></image:image>
+    <image:image><image:loc>https://rarekid.store/images/drop01-sticker-2.jpg</image:loc></image:image>
+    <image:image><image:loc>https://rarekid.store/images/drop01-sticker-3.jpg</image:loc></image:image>
+    <image:image><image:loc>https://rarekid.store/images/drop01-sticker-4.jpg</image:loc></image:image>
+    <image:image><image:loc>https://rarekid.store/images/drop01-sticker-5.jpg</image:loc></image:image>
   </url>
   <url>
-    <loc>https://YOUR-DOMAIN/blog/</loc>
+    <loc>https://rarekid.store/blog/</loc>
     <lastmod>2026-10-01</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://YOUR-DOMAIN/blog/heavyweight-oversized-t-shirt-ireland.html</loc>
+    <loc>https://rarekid.store/blog/heavyweight-oversized-t-shirt-ireland.html</loc>
     <lastmod>2026-10-01</lastmod>
     <priority>0.8</priority>
-    <image:image><image:loc>https://YOUR-DOMAIN/images/rare-kid-drop-01-heavyweight-tees.jpg</image:loc></image:image>
+    <image:image><image:loc>https://rarekid.store/images/rare-kid-drop-01-heavyweight-tees.jpg</image:loc></image:image>
   </url>
   <url>
-    <loc>https://YOUR-DOMAIN/terms.html</loc>
+    <loc>https://rarekid.store/terms.html</loc>
     <lastmod>2026-10-01</lastmod>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://YOUR-DOMAIN/privacy.html</loc>
+    <loc>https://rarekid.store/privacy.html</loc>
     <lastmod>2026-10-01</lastmod>
     <priority>0.3</priority>
   </url>

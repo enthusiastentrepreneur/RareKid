@@ -1,8 +1,7 @@
 RARE KID WEBSITE - GO-LIVE CHECKLIST
 
 1) FIND & REPLACE in all files (VS Code: Ctrl+Shift+H, or GitHub's editor):
-   YOUR-DOMAIN              -> your site address without https:// or a trailing slash
-                               e.g. rarekid.ie  (38 places)
+   rarekid.store              -> your site address without https:// or a trailing slash
    thefew@rarekid.store   -> your contact email (privacy.html, terms.html)
    YOUR FULL NAME           -> your legal name (privacy.html, terms.html)
    YOUR POSTAL ADDRESS, IRELAND -> a postal address in Ireland (terms.html, required by law)
@@ -22,7 +21,7 @@ RARE KID WEBSITE - GO-LIVE CHECKLIST
    with the order to +353 89 972 1947.
 
 5) GOOGLE: add the site in Google Search Console and submit
-   https://YOUR-DOMAIN/sitemap.xml
+   https://rarekid.store/sitemap.xml
 
 EDIT LATER
 - Price, WhatsApp number, tee measurements: top of js/shop.js
