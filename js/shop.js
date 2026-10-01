@@ -17,6 +17,7 @@ var RK_SHOP = {
 
 (function () {
   var KEY = 'rk_cart';
+  var LAST = 'rk_last_order';
   var cart = load();
 
   function load() {
@@ -101,6 +102,33 @@ var RK_SHOP = {
     return lines.join('\n');
   }
 
+
+  function showConfirm(no, url, name, returning) {
+    var old = document.querySelector('.order-modal'); if (old) old.remove();
+    var done = $('#order-done');
+    if (done) { $('#order-no').textContent = no; $('#order-link').href = url; done.hidden = false; }
+    var m = document.createElement('div');
+    m.className = 'order-modal';
+    m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true'); m.setAttribute('aria-labelledby', 'om-title');
+    m.innerHTML =
+      '<div class="om-box">' +
+        '<p class="eyebrow red" style="margin:0 0 10px">' + (returning ? 'Your order' : 'Order created') + '</p>' +
+        '<h2 id="om-title">' + (name ? 'Thanks, ' + esc(name) + '. ' : '') + 'One last step.</h2>' +
+        '<p class="om-no">Order number <strong>' + no + '</strong></p>' +
+        '<p>Your order is ready in WhatsApp. <strong>Press send in WhatsApp</strong> to place it. We\'ll reply with your An Post shipping cost and your bank transfer details or PayPal link.</p>' +
+        '<a class="btn wa-btn om-wa" href="' + url + '" target="_blank" rel="noopener">' + (returning ? 'Open WhatsApp again' : 'Open WhatsApp to send') + '</a>' +
+        '<button type="button" class="btn ghost om-close">' + (returning ? 'I\'ve sent it' : 'Done') + '</button>' +
+        '<p class="small" style="margin:14px 0 0">Keep your order number. You\'ll use it as your payment reference.</p>' +
+      '</div>';
+    document.body.appendChild(m);
+    var close = function () { m.remove(); try { localStorage.removeItem(LAST); } catch (err) {} };
+    m.querySelector('.om-close').addEventListener('click', close);
+    m.addEventListener('click', function (e) { if (e.target === m) m.remove(); });
+    document.addEventListener('keydown', function k(e) { if (e.key === 'Escape') { m.remove(); document.removeEventListener('keydown', k); } });
+    m.querySelector('.om-wa').focus();
+  }
+  function esc(t) { return String(t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
   var toastEl, toastT;
   function toast(msg) {
     if (!toastEl) { toastEl = document.createElement('div'); toastEl.className = 'toast'; toastEl.setAttribute('role', 'status'); document.body.appendChild(toastEl); }
@@ -133,18 +161,25 @@ var RK_SHOP = {
       var f = { first: v('first'), last: v('last'), phone: v('phone'), email: v('email'), address: v('address'), town: v('town'), county: v('county'), eircode: v('eircode').toUpperCase(), notes: v('notes'), payment: (form.querySelector('input[name="payment"]:checked') || {}).value || 'Not chosen' };
       var no = orderNumber();
       var url = 'https://wa.me/' + RK_SHOP.whatsapp + '?text=' + encodeURIComponent(buildMessage(no, f));
+      // remember the order so the confirmation survives a trip to WhatsApp and back
+      try { localStorage.setItem(LAST, JSON.stringify({ no: no, url: url, name: f.first, ts: Date.now() })); } catch (err) {}
+      // empty the cart once the order has been handed to WhatsApp
+      cart = []; save(); render(); form.reset();
+      showConfirm(no, url, f.first);
+      // try to open WhatsApp straight away; if the browser blocks it, the button in the confirmation does it
       var w = null;
       try { w = window.open(url, '_blank'); } catch (err) {}
       if (w) { try { w.opener = null; } catch (err) {} }
-      else { window.location.href = url; }
-      // empty the cart once the order has been handed to WhatsApp
-      cart = []; save(); render(); form.reset();
-      var done = $('#order-done');
-      $('#order-no').textContent = no;
-      $('#order-link').href = url;
-      done.hidden = false;
-      done.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
+    // back from WhatsApp (or page reloaded)? show the confirmation again for recent orders
+    function recall() {
+      try {
+        var o = JSON.parse(localStorage.getItem(LAST));
+        if (o && Date.now() - o.ts < 30 * 60 * 1000 && !document.querySelector('.order-modal')) showConfirm(o.no, o.url, o.name, true);
+      } catch (err) {}
+    }
+    window.addEventListener('pageshow', function (e) { if (e.persisted) recall(); });
+    recall();
     render();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
