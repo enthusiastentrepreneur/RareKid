@@ -361,3 +361,12 @@ section{scroll-margin-top:90px}
 .form-status.err{border-left-color:#ffd166}
 .form .btn[disabled]{opacity:.7;cursor:wait}
 @media (max-width:560px){.label-note{position:static;grid-column:1/-1;justify-self:center;transform:rotate(-2deg);margin-top:14px;white-space:normal;text-align:center;max-width:100%}.wa-fab{width:50px;height:50px}.wa-fab .ico{width:26px;height:26px}}
+/* order confirmation */
+.order-modal{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.78);display:grid;place-items:center;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+.om-box{background:#000;border:1px solid var(--line);border-top:3px solid var(--red);width:100%;max-width:480px;padding:clamp(22px,5vw,34px);display:grid;gap:12px;max-height:100%;overflow:auto}
+.om-box h2{font-size:clamp(1.8rem,6vw,2.4rem);margin:0}
+.om-box p{margin:0;color:#cfcac1}
+.om-no{font-family:var(--display);letter-spacing:.14em;text-transform:uppercase;font-size:.95rem}
+.om-no strong{color:var(--cream);font-size:1.25rem;letter-spacing:.08em;display:block;margin-top:4px}
+.om-box .btn{justify-content:center;width:100%}
+.om-box .btn.ghost{border-color:var(--line)}
